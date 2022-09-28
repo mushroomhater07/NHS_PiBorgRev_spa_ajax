@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                mode = $(this).html()
+                $.post("/work", {mode : mode}, function(data, status){
+                     if(status == "success"){
+                        console.log(String(data));
+                        $("#mode").html(mode);};
+                });
+             });   
+            
+            $("#slider").change(function(){ 
+                speed = $(this).val()
+                $.post("/sped", {speed : speed}, function(data, status){
+                     if(status == "success"){
+                        console.log(String(data));
+                        $("#output").html(speed);};
+                });
+            });
+        
+            // document.getElementById("slider").addEventListener("input", func);
+            // function func(){
+            //     $("#output").html($("#slider").val());
+            // };
+        });
+    </script>
+</head>
+<body>
+    <button>Forward</button>
+    <button>Backward</button>
+    <button>Clockwise</button>
+    <button>Anti-clockwise</button>
+    <button>Handbrake</button>
+    <input type="range" id="slider" value="100" min="0" max="100">
+    <nav id="mode"></nav><nav id="output"></nav>
+    <img src="{{ url_for('video_feed') }}" alt="no camera" style="width:100%;"><!--src="{{ url_for('static', filename='favicon.ico') }}"  -->
+</body>
+</html>
