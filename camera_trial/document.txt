@@ -1,0 +1,11 @@
+
+
+b'--frame\r\n'
+       b'Content-Type:  image/jpeg\r\n\r\n' + frame +
+         b'\r\n\r\n'
+    
+
+mimetype='multipart/x-mixed-replace; boundary=frame'
+
+
+https://i.postimg.cc/nz3DKPLw/face-recognition.png
